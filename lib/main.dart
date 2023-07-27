@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:popular_movie/features/resources/movie_repository.dart';
 
 import 'common/api/api_provider.dart';
+import 'common/services/database_services.dart';
 import 'features/cubit/fetch_movie_list_bloc.dart';
 import 'features/ui/pages/movie_screen.dart';
 
@@ -21,12 +22,12 @@ class MyApp extends StatelessWidget {
           create: (context) => ApiProvider(),
         ),
         RepositoryProvider(
-            create: (context) => FetchMovieListBloc(
-                repository: context.read<MovieRepository>())),
+          create: (context) => DatabaseService(),
+        ),
         RepositoryProvider(
           create: (context) => MovieRepository(
             apiProvider: context.read<ApiProvider>(),
-            // databaseService: context.read<DatabaseService>(),
+            databaseService: context.read<DatabaseService>(),
           ),
         ),
       ],

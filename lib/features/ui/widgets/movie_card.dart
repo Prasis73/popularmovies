@@ -1,8 +1,11 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:popular_movie/features/cubit/favourite_movie_cubit.dart';
 
 import 'package:popular_movie/features/models/movie_model.dart';
+
+import '../../../common/cubit/common_state.dart';
 
 class MovieCard extends StatelessWidget {
   final MovieModel movie;
@@ -41,12 +44,27 @@ class MovieCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite_outline_outlined,
-                ),
-              )
+              BlocBuilder<FavoriteCubit, CommonState>(
+                  builder: (context, state) {
+                if (state is CommonSuccessState<bool>) {
+                  return IconButton(
+                    onPressed: () {
+                      if (state.item) {
+                        context.read<FavoriteCubit>().unfavorite(movie.id);
+                      } else {
+                        context.read<FavoriteCubit>().favorite(movie);
+                      }
+                    },
+                    icon: Icon(
+                      state.item
+                          ? Icons.favorite_outlined
+                          : Icons.favorite_outline_outlined,
+                    ),
+                  );
+                } else {
+                  return const CupertinoActivityIndicator();
+                }
+              })
             ],
           ),
         ),

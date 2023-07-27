@@ -14,3 +14,7 @@ class LoadMoreMovieEvent extends MovieEvent {
     this.query = "",
   });
 }
+
+class ReloadMovieEvent extends MovieEvent {
+  ReloadMovieEvent();
+}
