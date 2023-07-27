@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/cubit/common_state.dart';
 import '../../cubit/favourite_movie_cubit.dart';
+import '../../cubit/fetch_all_favourite_cubit.dart';
 import '../../cubit/fetch_movie_list_bloc.dart';
 import '../../cubit/movie_event.dart';
 import '../../models/movie_model.dart';
@@ -31,7 +32,9 @@ class _MovieWidgetState extends State<MovieWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color.fromARGB(255, 240, 238, 238),
         appBar: AppBar(
+          backgroundColor: Colors.black,
           title: const Text("Popular Movies"),
           actions: [
             Padding(
@@ -56,21 +59,24 @@ class _MovieWidgetState extends State<MovieWidget> {
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 8),
               child: Row(
                 children: [
                   Expanded(
                     child: TextFormField(
                       controller: _searchController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         contentPadding: EdgeInsets.only(
                             top: 20), // add padding to adjust text
                         isDense: true,
-                        hintText: "Search",
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(
-                              top: 15), // add padding to adjust icon
-                          child: Icon(Icons.search),
+                        hintText: "    Search Popular Movies ..",
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                            width: 2.0,
+                          ),
                         ),
                       ),
                       onEditingComplete: () {
@@ -84,22 +90,27 @@ class _MovieWidgetState extends State<MovieWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 14.0, left: 10),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Container(
-                      height: 35,
-                      width: 35,
+                      height: 37,
+                      width: 45,
                       decoration: BoxDecoration(
-                          color: Colors.blueGrey,
+                          color: Colors.black,
                           borderRadius: BorderRadius.circular(8)),
                       child: InkWell(
                           onTap: () {
+                            FocusScope.of(context).unfocus();
                             context.read<FetchMovieListBloc>().add(
                                   FetchMovieEvent(
                                     query: _searchController.text,
                                   ),
                                 );
                           },
-                          child: const Center(child: Icon(Icons.search))),
+                          child: const Center(
+                              child: Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          ))),
                     ),
                   )
                 ],

@@ -22,7 +22,11 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Favourites")),
+      backgroundColor: Color.fromARGB(255, 240, 238, 238),
+      appBar: AppBar(
+        title: const Text("Favourites"),
+        backgroundColor: Colors.black,
+      ),
       body: BlocBuilder<FetchAllFavoriteCubit, CommonState>(
           builder: (context, state) {
         if (state is CommonErrorState) {
