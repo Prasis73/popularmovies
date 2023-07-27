@@ -1,24 +1,13 @@
 import 'package:bloc/bloc.dart';
-
-import '../../common/cubit/common_state.dart';
-import '../models/movie_model.dart';
-import '../resources/movie_repository.dart';
+import 'package:popular_movie/common/cubit/common_state.dart';
+import 'package:popular_movie/features/models/movie_model.dart';
+import 'package:popular_movie/features/resources/movie_repository.dart';
 
 class FavoriteCubit extends Cubit<CommonState> {
   final MovieRepository repository;
-  FavoriteCubit({required this.repository}) : super(CommonInitialState());
-
-  initial(int id) async {
-    emit(CommonLoadingState());
-    final res = await repository.isFavorite(id);
-    res.fold(
-      (err) {
-        emit(CommonErrorState(message: err));
-        emit(CommonSuccessState<bool>(item: false));
-      },
-      (data) => emit(CommonSuccessState<bool>(item: data)),
-    );
-  }
+  final bool initialValue;
+  FavoriteCubit({required this.repository, required this.initialValue})
+      : super(CommonSuccessState<bool>(item: initialValue));
 
   favorite(MovieModel movie) async {
     emit(CommonLoadingState());

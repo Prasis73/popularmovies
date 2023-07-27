@@ -20,9 +20,15 @@ class FavouriteWidget extends StatefulWidget {
 
 class _FavouriteWidgetState extends State<FavouriteWidget> {
   @override
+  void initState() {
+    context.read<FetchAllFavoriteCubit>().fetchMovie();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 240, 238, 238),
+      backgroundColor: const Color.fromARGB(255, 240, 238, 238),
       appBar: AppBar(
         title: const Text("Favourites"),
         backgroundColor: Colors.black,
@@ -48,17 +54,9 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
               return BlocProvider(
                 create: (context) => FavoriteCubit(
                   repository: context.read<MovieRepository>(),
-                )..initial(state.item[index].id),
-                child: BlocListener<FavoriteCubit, CommonState>(
-                  listener: (context, state) {
-                    if (state is CommonSuccessState<bool>) {
-                      context
-                          .read<FetchMovieListBloc>()
-                          .add(ReloadMovieEvent());
-                    }
-                  },
-                  child: MovieCard(movie: state.item[index]),
+                  initialValue: state.item[index].favorite,
                 ),
+                child: MovieCard(movie: state.item[index]),
               );
             },
           );

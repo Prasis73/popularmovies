@@ -25,7 +25,7 @@ class DatabaseService {
     final database = await _database;
     await database.insert(tableName, {
       tableId: movie.id,
-      tableMovie: movie.toJson(),
+      tableMovie: movie.copyWith(favorite: true).toJson(),
     });
   }
 

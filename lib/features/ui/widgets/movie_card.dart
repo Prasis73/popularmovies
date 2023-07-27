@@ -1,16 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:popular_movie/common/cubit/common_state.dart';
 import 'package:popular_movie/features/cubit/favourite_movie_cubit.dart';
-
+import 'package:popular_movie/features/cubit/fetch_all_favourite_cubit.dart';
+import 'package:popular_movie/features/cubit/fetch_movie_list_bloc.dart';
+import 'package:popular_movie/features/cubit/movie_event.dart';
 import 'package:popular_movie/features/models/movie_model.dart';
 import 'package:popular_movie/features/ui/pages/movie_details.dart';
-
-import '../../../common/cubit/common_state.dart';
-import '../../cubit/fetch_all_favourite_cubit.dart';
-import '../../cubit/fetch_movie_list_bloc.dart';
-import '../../cubit/movie_event.dart';
-import '../../resources/movie_repository.dart';
 
 class MovieCard extends StatefulWidget {
   final MovieModel movie;
@@ -32,13 +29,11 @@ class _MovieCardState extends State<MovieCard> {
         InkWell(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        MovieDetailPage(movie: widget.movie))).then((value) {
-              context.read<FetchMovieListBloc>().add(FetchMovieEvent());
-              context.read<FetchAllFavoriteCubit>().fetchMovie();
-            });
+              context,
+              MaterialPageRoute(
+                builder: (context) => MovieDetailPage(movie: widget.movie),
+              ),
+            );
           },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
@@ -66,29 +61,46 @@ class _MovieCardState extends State<MovieCard> {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              BlocBuilder<FavoriteCubit, CommonState>(
-                  builder: (context, state) {
-                if (state is CommonSuccessState<bool>) {
-                  return IconButton(
-                    onPressed: () {
-                      if (state.item) {
+              SizedBox(
+                height: 40,
+                width: 40,
+                child: BlocConsumer<FavoriteCubit, CommonState>(
+                  listener: (context, state) {
+                    if (state is CommonSuccessState<bool>) {
+                      if (state.item != widget.movie.favorite) {
                         context
-                            .read<FavoriteCubit>()
-                            .unfavorite(widget.movie.id);
-                      } else {
-                        context.read<FavoriteCubit>().favorite(widget.movie);
+                            .read<FetchMovieListBloc>()
+                            .add(ReloadMovieEvent());
+                        context.read<FetchAllFavoriteCubit>().reload();
                       }
-                    },
-                    icon: Icon(
-                      state.item
-                          ? Icons.favorite_outlined
-                          : Icons.favorite_outline_outlined,
-                    ),
-                  );
-                } else {
-                  return const CupertinoActivityIndicator();
-                }
-              })
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is CommonSuccessState<bool>) {
+                      return IconButton(
+                        onPressed: () {
+                          if (widget.movie.favorite) {
+                            context
+                                .read<FavoriteCubit>()
+                                .unfavorite(widget.movie.id);
+                          } else {
+                            context
+                                .read<FavoriteCubit>()
+                                .favorite(widget.movie);
+                          }
+                        },
+                        icon: Icon(
+                          widget.movie.favorite
+                              ? Icons.favorite_outlined
+                              : Icons.favorite_outline_outlined,
+                        ),
+                      );
+                    } else {
+                      return const CupertinoActivityIndicator();
+                    }
+                  },
+                ),
+              )
             ],
           ),
         ),
