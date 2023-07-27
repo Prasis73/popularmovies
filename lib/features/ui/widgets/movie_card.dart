@@ -4,10 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:popular_movie/features/cubit/favourite_movie_cubit.dart';
 
 import 'package:popular_movie/features/models/movie_model.dart';
+import 'package:popular_movie/features/ui/pages/movie_details.dart';
 
 import '../../../common/cubit/common_state.dart';
+import '../../cubit/fetch_all_favourite_cubit.dart';
+import '../../cubit/fetch_movie_list_bloc.dart';
+import '../../cubit/movie_event.dart';
+import '../../resources/movie_repository.dart';
 
-class MovieCard extends StatelessWidget {
+class MovieCard extends StatefulWidget {
   final MovieModel movie;
   const MovieCard({
     Key? key,
@@ -15,17 +20,34 @@ class MovieCard extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<MovieCard> createState() => _MovieCardState();
+}
+
+class _MovieCardState extends State<MovieCard> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            movie.posterImage,
-            fit: BoxFit.cover,
-            height: 240,
-            width: double.infinity,
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        MovieDetailPage(movie: widget.movie))).then((value) {
+              context.read<FetchMovieListBloc>().add(FetchMovieEvent());
+              context.read<FetchAllFavoriteCubit>().fetchMovie();
+            });
+          },
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              widget.movie.posterImage,
+              fit: BoxFit.cover,
+              height: 240,
+              width: double.infinity,
+            ),
           ),
         ),
         Padding(
@@ -34,7 +56,7 @@ class MovieCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  movie.title,
+                  widget.movie.title,
                   textAlign: TextAlign.start,
                   maxLines: 2,
                   style: const TextStyle(
@@ -50,9 +72,11 @@ class MovieCard extends StatelessWidget {
                   return IconButton(
                     onPressed: () {
                       if (state.item) {
-                        context.read<FavoriteCubit>().unfavorite(movie.id);
+                        context
+                            .read<FavoriteCubit>()
+                            .unfavorite(widget.movie.id);
                       } else {
-                        context.read<FavoriteCubit>().favorite(movie);
+                        context.read<FavoriteCubit>().favorite(widget.movie);
                       }
                     },
                     icon: Icon(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:popular_movie/features/resources/movie_repository.dart';
 
 import 'common/api/api_provider.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
@@ -39,9 +41,16 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ],
-        child: const MaterialApp(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Movie',
-          home: MovieScreen(),
+          theme: ThemeData(
+            textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
+              bodyMedium: GoogleFonts.lato(
+                  textStyle: TextStyle(fontWeight: FontWeight.w800)),
+            ),
+          ),
+          home: const MovieScreen(),
         ),
       ),
     );

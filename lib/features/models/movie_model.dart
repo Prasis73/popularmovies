@@ -73,6 +73,7 @@ class MovieModel {
   }
 
   String get posterImage => "https://image.tmdb.org/t/p/w500/$posterPath";
+  String get backgroundImage => "https://image.tmdb.org/t/p/w500/$backdropPath";
 
   String toJson() => json.encode(toMap());
 
