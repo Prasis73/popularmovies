@@ -2,6 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:popular_movie/features/cubit/fetch_all_favourite_cubit.dart';
+import 'package:popular_movie/features/cubit/fetch_movie_list_bloc.dart';
+import 'package:popular_movie/features/cubit/movie_event.dart';
 
 import 'package:popular_movie/features/models/movie_model.dart';
 
@@ -19,12 +22,12 @@ class DetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 240, 238, 238),
+      backgroundColor: const Color.fromARGB(255, 240, 238, 238),
       body: Stack(
         alignment: Alignment.topLeft,
         children: [
           SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(
@@ -39,29 +42,35 @@ class DetailsWidget extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   )),
-              BlocProvider(
-                create: (context) => FavoriteCubit(
-                  repository: context.read<MovieRepository>(),
-                )..initial(movie.id),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 20.0, left: 15),
-                        child: Text(
-                          movie.title,
-                          textAlign: TextAlign.start,
-                          maxLines: 2,
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w800,
-                          ),
-                          overflow: TextOverflow.ellipsis,
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20.0, left: 15),
+                      child: Text(
+                        movie.title,
+                        textAlign: TextAlign.start,
+                        maxLines: 2,
+                        style: const TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w800,
                         ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    BlocBuilder<FavoriteCubit, CommonState>(
-                        builder: (context, state) {
+                  ),
+                  BlocConsumer<FavoriteCubit, CommonState>(
+                    listener: (context, state) {
+                      if (state is CommonSuccessState<bool>) {
+                        if (state.item != movie.favorite) {
+                          context
+                              .read<FetchMovieListBloc>()
+                              .add(ReloadMovieEvent());
+                          context.read<FetchAllFavoriteCubit>().reload();
+                        }
+                      }
+                    },
+                    builder: (context, state) {
                       if (state is CommonSuccessState<bool>) {
                         return IconButton(
                           onPressed: () {
@@ -82,21 +91,21 @@ class DetailsWidget extends StatelessWidget {
                       } else {
                         return const CupertinoActivityIndicator();
                       }
-                    })
-                  ],
-                ),
+                    },
+                  )
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0, left: 18),
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.star,
                       color: Color.fromARGB(255, 143, 129, 4),
                       size: 20,
                     ),
                     Text(
-                      "Average Rating:" + movie.voteAverage,
+                      "Average Rating:${movie.voteAverage}",
                       textAlign: TextAlign.start,
                       maxLines: 2,
                       style: const TextStyle(
@@ -156,7 +165,7 @@ class DetailsWidget extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 2.0, left: 1),
                           child: Text(
-                            "Language: " + movie.originalLanguage.toString(),
+                            "Language: ${movie.originalLanguage}",
                             textAlign: TextAlign.start,
                             maxLines: 2,
                             style: const TextStyle(
@@ -184,7 +193,7 @@ class DetailsWidget extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0, left: 1),
                           child: Text(
-                            "Release Date: " + movie.releaseDate,
+                            "Release Date: ${movie.releaseDate}",
                             textAlign: TextAlign.start,
                             maxLines: 2,
                             style: const TextStyle(
@@ -199,7 +208,7 @@ class DetailsWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
             ]),

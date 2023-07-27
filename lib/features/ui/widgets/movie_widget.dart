@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/cubit/common_state.dart';
 import '../../cubit/favourite_movie_cubit.dart';
-import '../../cubit/fetch_all_favourite_cubit.dart';
 import '../../cubit/fetch_movie_list_bloc.dart';
 import '../../cubit/movie_event.dart';
 import '../../models/movie_model.dart';
@@ -32,7 +31,7 @@ class _MovieWidgetState extends State<MovieWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 240, 238, 238),
+        backgroundColor: const Color.fromARGB(255, 240, 238, 238),
         appBar: AppBar(
           backgroundColor: Colors.black,
           title: const Text("Popular Movies"),
@@ -43,13 +42,11 @@ class _MovieWidgetState extends State<MovieWidget> {
                 highlightColor: Colors.transparent,
                 onPressed: () {
                   Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const FavouriteScreen()))
-                      .then((value) {
-                    //test
-                    context.read<FetchMovieListBloc>().add(FetchMovieEvent());
-                  });
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FavouriteScreen(),
+                    ),
+                  );
                 },
                 icon: const Icon(Icons.favorite),
               ),
@@ -67,13 +64,13 @@ class _MovieWidgetState extends State<MovieWidget> {
                     child: TextFormField(
                       controller: _searchController,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(
+                        contentPadding: const EdgeInsets.only(
                             top: 20), // add padding to adjust text
                         isDense: true,
                         hintText: "    Search Popular Movies ..",
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.black,
                             width: 2.0,
                           ),
@@ -159,10 +156,12 @@ class _MovieWidgetState extends State<MovieWidget> {
                         itemCount: state.item.length,
                         itemBuilder: (BuildContext ctx, index) {
                           return BlocProvider(
-                              create: (context) => FavoriteCubit(
-                                    repository: context.read<MovieRepository>(),
-                                  )..initial(state.item[index].id),
-                              child: MovieCard(movie: state.item[index]));
+                            create: (context) => FavoriteCubit(
+                              repository: context.read<MovieRepository>(),
+                              initialValue: state.item[index].favorite,
+                            ),
+                            child: MovieCard(movie: state.item[index]),
+                          );
                         },
                       ),
                     );

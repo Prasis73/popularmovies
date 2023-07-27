@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:popular_movie/features/cubit/fetch_all_favourite_cubit.dart';
 import 'package:popular_movie/features/resources/movie_repository.dart';
 
 import 'common/api/api_provider.dart';
@@ -40,6 +41,11 @@ class MyApp extends StatelessWidget {
               repository: context.read<MovieRepository>(),
             ),
           ),
+          BlocProvider(
+            create: (context) => FetchAllFavoriteCubit(
+              repository: context.read<MovieRepository>(),
+            ),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -47,7 +53,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
               bodyMedium: GoogleFonts.lato(
-                  textStyle: TextStyle(fontWeight: FontWeight.w800)),
+                  textStyle: const TextStyle(fontWeight: FontWeight.w800)),
             ),
           ),
           home: const MovieScreen(),

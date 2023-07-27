@@ -15,6 +15,8 @@ class MovieModel {
   bool video;
   String voteAverage;
   int voteCount;
+  bool favorite;
+
   MovieModel({
     required this.adult,
     required this.backdropPath,
@@ -30,6 +32,7 @@ class MovieModel {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    required this.favorite,
   });
 
   Map<String, dynamic> toMap() {
@@ -48,6 +51,7 @@ class MovieModel {
       "video": video,
       "vote_average": voteAverage.toString(),
       "vote_count": voteCount,
+      "favorite": favorite,
     };
   }
 
@@ -69,6 +73,7 @@ class MovieModel {
       video: json["video"] ?? false,
       voteAverage: json["vote_average"]?.toString() ?? "",
       voteCount: json["vote_count"] ?? 0,
+      favorite: json["favorite"] ?? false,
     );
   }
 
@@ -79,4 +84,24 @@ class MovieModel {
 
   factory MovieModel.fromJson(String source) =>
       MovieModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  MovieModel copyWith({bool? favorite}) {
+    return MovieModel(
+      adult: adult,
+      backdropPath: backdropPath,
+      genreIds: genreIds,
+      id: id,
+      originalLanguage: originalLanguage,
+      originalTitle: originalTitle,
+      overview: overview,
+      popularity: popularity,
+      posterPath: posterPath,
+      releaseDate: releaseDate,
+      title: title,
+      video: video,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
+      favorite: favorite ?? this.favorite,
+    );
+  }
 }

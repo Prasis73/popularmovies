@@ -16,4 +16,9 @@ class FetchAllFavoriteCubit extends Cubit<CommonState> {
       (data) => emit(CommonSuccessState(item: data)),
     );
   }
+
+  reload() {
+    emit(CommonLoadingState());
+    emit(CommonSuccessState(item: repository.favoriteMovies));
+  }
 }
