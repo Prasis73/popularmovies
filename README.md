@@ -75,10 +75,10 @@ flutter run
 
 ## Screenshots
 
-<img src="https://prasisrijal.com.np/moviesc/1.png">
-<img src="https://prasisrijal.com.np/moviesc/2.png"><br>
-<img src="https://prasisrijal.com.np/moviesc/3.png">
-<img src="https://prasisrijal.com.np/moviesc/4.png"><br>
+<img src="https://prasisrijal.com.np/moviesc/1.png" height=200px width=100px>
+<img src="https://prasisrijal.com.np/moviesc/2.png" height=200px width=100px><br>
+<img src="https://prasisrijal.com.np/moviesc/3.png" height=200px width=100px>
+<img src="https://prasisrijal.com.np/moviesc/4.png" height=200px width=100px><br>
 
 <!-- CONTACT -->
 
