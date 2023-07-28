@@ -1,12 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
+import 'package:popular_movie/common/api/api_provider.dart';
+import 'package:popular_movie/common/constants/constants.dart';
 
 import 'package:popular_movie/common/errors/common_error.dart';
 import 'package:popular_movie/common/services/database_services.dart';
-import 'package:popular_movie/features/models/movie_model.dart';
-
-import '../../common/api/api_provider.dart';
-import '../../common/constants/constants.dart';
+import 'package:popular_movie/features/movies/models/movie_model.dart';
 
 class MovieRepository {
   final ApiProvider apiProvider;

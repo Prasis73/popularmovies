@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:popular_movie/common/cubit/common_state.dart';
 
-import 'package:popular_movie/features/cubit/movie_event.dart';
-import 'package:popular_movie/features/resources/movie_repository.dart';
+import 'package:popular_movie/features/movies/cubit/movie_event.dart';
+import 'package:popular_movie/features/movies/resources/movie_repository.dart';
 
-import '../../common/cubit/common_state.dart';
 import '../models/movie_model.dart';
 
 class FetchMovieListBloc extends Bloc<MovieEvent, CommonState> {

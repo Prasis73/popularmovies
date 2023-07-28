@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:popular_movie/features/movies/ui/widgets/movie_widget.dart';
 
-import '../widgets/movie_widget.dart';
 
 class MovieScreen extends StatefulWidget {
   const MovieScreen({super.key});

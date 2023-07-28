@@ -2,15 +2,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:popular_movie/features/cubit/fetch_all_favourite_cubit.dart';
-import 'package:popular_movie/features/cubit/fetch_movie_list_bloc.dart';
-import 'package:popular_movie/features/cubit/movie_event.dart';
-
-import 'package:popular_movie/features/models/movie_model.dart';
-
-import '../../../common/cubit/common_state.dart';
-import '../../cubit/favourite_movie_cubit.dart';
-import '../../resources/movie_repository.dart';
+import 'package:popular_movie/common/cubit/common_state.dart';
+import 'package:popular_movie/features/movies/cubit/favourite_movie_cubit.dart';
+import 'package:popular_movie/features/movies/cubit/fetch_all_favourite_cubit.dart';
+import 'package:popular_movie/features/movies/cubit/fetch_movie_list_bloc.dart';
+import 'package:popular_movie/features/movies/cubit/movie_event.dart';
+import 'package:popular_movie/features/movies/models/movie_model.dart';
 
 class DetailsWidget extends StatelessWidget {
   final MovieModel movie;
