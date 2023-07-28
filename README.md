@@ -2,7 +2,7 @@
 
 <br />
 <div align="center">
-  <h3 align="center">Popular Movies- Flutter Movie App</h3>
+  <h3 align="center">Popular Movies - Flutter Movie App</h3>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -75,10 +75,10 @@ flutter run
 
 ## Screenshots
 
-<img src="https://prasisrijal.com.np/moviesc/1.png" height=280px width=150px><br> Home Page Screen<br>
-<img src="https://prasisrijal.com.np/moviesc/2.png" height=280px width=150px><br> Favourite Screen <br>
-<img src="https://prasisrijal.com.np/moviesc/3.png" height=280px width=150px><br> Search Movie Screen<br>
-<img src="https://prasisrijal.com.np/moviesc/4.png" height=280px width=150px><br> Movie details Screen<br>
+<img src="https://prasisrijal.com.np/moviesc/1.png" height=280px width=150px><br> Home Page Screen<br><br>
+<img src="https://prasisrijal.com.np/moviesc/2.png" height=280px width=150px><br> Favourite Screen <br><br>
+<img src="https://prasisrijal.com.np/moviesc/3.png" height=280px width=150px><br> Search Movie Screen<br><br>
+<img src="https://prasisrijal.com.np/moviesc/4.png" height=280px width=150px><br> Movie details Screen<br><br>
 
 <!-- CONTACT -->
 
@@ -87,7 +87,8 @@ flutter run
 <a href="https://www.facebook.com/prasis.rijal">Facebook</a> <br>
 <a href="https://www.linkedin.com/in/prasis-rijal-3285b9181/">Linkedin</a><br>
 <a href="https://www.upwork.com/freelancers/prasisrijal">Upwork</a><br>
-Gmail: prasis73@gmail.com
+<a href="mailto:prasis73@gmail.com">Gmail</a><br>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
