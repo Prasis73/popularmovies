@@ -78,7 +78,7 @@ flutter run
 <img src="https://prasisrijal.com.np/moviesc/1.png">
 <img src="https://prasisrijal.com.np/moviesc/2.png"><br>
 <img src="https://prasisrijal.com.np/moviesc/3.png">
-<img src="https://prasisrijal.com.np/moviesc/4.png">
+<img src="https://prasisrijal.com.np/moviesc/4.png"><br>
 
 <!-- CONTACT -->
 
