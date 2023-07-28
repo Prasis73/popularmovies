@@ -15,7 +15,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#Set-up">Getting Started</a></li>
+    <li><a href="#set-up">Set up</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -51,11 +51,11 @@ google_fonts: <br>
 
 <!-- GETTING STARTED -->
 
-## Set-up
+### Set-up
 
 You need to install android studio, flutter, dart .
 
-## 1. Clone the repo
+## Clone the repo
 
 ```sh
 $ git clone https://github.com/Prasis73/popularmovies.git
@@ -76,8 +76,8 @@ flutter run
 ## Screenshots
 
 <img src="https://prasisrijal.com.np/moviesc/1.png" height=250px width=150px><br> Home Page<br>
-<img src="https://prasisrijal.com.np/moviesc/2.png" height=250px width=150px><br> Search Movie<br>
-<img src="https://prasisrijal.com.np/moviesc/3.png" height=250px width=150px><br> Favourite
+<img src="https://prasisrijal.com.np/moviesc/2.png" height=250px width=150px><br> Favourite <br>
+<img src="https://prasisrijal.com.np/moviesc/3.png" height=250px width=150px><br> Search Movie<br>
 <img src="https://prasisrijal.com.np/moviesc/4.png" height=250px width=150px><br> Movie details<br>
 
 <!-- CONTACT -->
