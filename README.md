@@ -15,7 +15,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#Set-up">Getting Started</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -25,7 +25,7 @@
 ## About The Project
 
 This is a Popular movie catalogue application which build by flutter,and uses the Movie Database API from themoviedb.org.
-The project uses common layouts widget, such as Container, Stack, Column, Row, GridView, etc. Sqflite is used as local database to store favorites for fast data fetching and pagination feature is implemented to load movies list.
+The project uses common layouts widget, such as Container, Stack, Column, Row, GridView, etc. Sqflite is used as local database to store favorites for fast data fetching and pagination feature is implemented to load movies list. BLoC is used for state management and a separate file is created for defining error classes and handling error messages.
 
 ## App Features:
 
@@ -35,17 +35,15 @@ The project uses common layouts widget, such as Container, Stack, Column, Row, G
 - Pagination
 - Add to Favourite
 
-BLoC is used for state management and a separate file is created for defining error classes and handling error messages
+## Packages used:
 
-### Packages used:
-
-bloc:
-flutter_bloc:
-bloc_concurrency:
-dartz:
-sqflite:
-dio:
-google_fonts:
+bloc: <br>
+flutter_bloc: <br>
+bloc_concurrency: <br>
+dartz: <br>
+sqflite: <br>
+dio: <br>
+google_fonts: <br>
 
 ### Built With
 
@@ -53,7 +51,7 @@ google_fonts:
 
 <!-- GETTING STARTED -->
 
-## Set up
+## Set-up
 
 You need to install android studio, flutter, dart .
 
@@ -74,6 +72,13 @@ flutter pub get
 ```sh
 flutter run
 ```
+
+## Screenshots
+
+<img src="https://prasisrijal.com.np/moviesc/1.png">
+<img src="https://prasisrijal.com.np/moviesc/2.png"><br>
+<img src="https://prasisrijal.com.np/moviesc/3.png">
+<img src="https://prasisrijal.com.np/moviesc/4.png"><br>
 
 <!-- CONTACT -->
 

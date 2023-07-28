@@ -56,39 +56,43 @@ class DetailsWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  BlocConsumer<FavoriteCubit, CommonState>(
-                    listener: (context, state) {
-                      if (state is CommonSuccessState<bool>) {
-                        if (state.item != movie.favorite) {
-                          context
-                              .read<FetchMovieListBloc>()
-                              .add(ReloadMovieEvent());
-                          context.read<FetchAllFavoriteCubit>().reload();
+                  Container(
+                    height: 90,
+                    width: 60,
+                    child: BlocConsumer<FavoriteCubit, CommonState>(
+                      listener: (context, state) {
+                        if (state is CommonSuccessState<bool>) {
+                          if (state.item != movie.favorite) {
+                            context
+                                .read<FetchMovieListBloc>()
+                                .add(ReloadMovieEvent());
+                            context.read<FetchAllFavoriteCubit>().reload();
+                          }
                         }
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is CommonSuccessState<bool>) {
-                        return IconButton(
-                          onPressed: () {
-                            if (state.item) {
-                              context
-                                  .read<FavoriteCubit>()
-                                  .unfavorite(movie.id);
-                            } else {
-                              context.read<FavoriteCubit>().favorite(movie);
-                            }
-                          },
-                          icon: Icon(
-                            state.item
-                                ? Icons.favorite_outlined
-                                : Icons.favorite_outline_outlined,
-                          ),
-                        );
-                      } else {
-                        return const CupertinoActivityIndicator();
-                      }
-                    },
+                      },
+                      builder: (context, state) {
+                        if (state is CommonSuccessState<bool>) {
+                          return IconButton(
+                            onPressed: () {
+                              if (state.item) {
+                                context
+                                    .read<FavoriteCubit>()
+                                    .unfavorite(movie.id);
+                              } else {
+                                context.read<FavoriteCubit>().favorite(movie);
+                              }
+                            },
+                            icon: Icon(
+                              state.item
+                                  ? Icons.favorite_outlined
+                                  : Icons.favorite_outline_outlined,
+                            ),
+                          );
+                        } else {
+                          return const CupertinoActivityIndicator();
+                        }
+                      },
+                    ),
                   )
                 ],
               ),
