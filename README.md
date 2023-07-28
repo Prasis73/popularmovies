@@ -29,7 +29,7 @@ The project uses common layouts widget, such as Container, Stack, Column, Row, G
 
 ## App Features:
 
-- Home Screen
+- Popular Movie's Home Screen
 - Movies details
 - Search Functionality
 - Pagination
@@ -75,18 +75,18 @@ flutter run
 
 ## Screenshots
 
-<img src="https://prasisrijal.com.np/moviesc/1.png" height=200px width=100px>
-<img src="https://prasisrijal.com.np/moviesc/2.png" height=200px width=100px><br>
-<img src="https://prasisrijal.com.np/moviesc/3.png" height=200px width=100px>
-<img src="https://prasisrijal.com.np/moviesc/4.png" height=200px width=100px><br>
+<img src="https://prasisrijal.com.np/moviesc/1.png" height=250px width=150px><br> Home Page<br>
+<img src="https://prasisrijal.com.np/moviesc/2.png" height=250px width=150px><br> Search Movie<br>
+<img src="https://prasisrijal.com.np/moviesc/3.png" height=250px width=150px><br> Favourite
+<img src="https://prasisrijal.com.np/moviesc/4.png" height=250px width=150px><br> Movie details<br>
 
 <!-- CONTACT -->
 
 ## Contact
 
-<a href="https://www.facebook.com/prasis.rijal">Facebook</a>
-<a href="https://www.linkedin.com/in/prasis-rijal-3285b9181/">Linkedin</a>
-<a href="https://www.upwork.com/freelancers/prasisrijal">Upwork</a>
+<a href="https://www.facebook.com/prasis.rijal">Facebook</a> <br>
+<a href="https://www.linkedin.com/in/prasis-rijal-3285b9181/">Linkedin</a><br>
+<a href="https://www.upwork.com/freelancers/prasisrijal">Upwork</a><br>
 Gmail: prasis73@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
