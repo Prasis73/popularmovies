@@ -1,9 +1,8 @@
+import 'package:popular_movie/features/movies/models/movie_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../features/models/movie_model.dart';
-
 class DatabaseService {
-  final String _databaseName = "movie";
+  final String _databaseName = "movie.db";
   final int version = 1;
   final String tableName = "movie";
   Database? _db;
@@ -12,12 +11,15 @@ class DatabaseService {
 
   Future<Database> get _database async {
     final path = await getDatabasesPath();
-    _db ??= await openDatabase("$path/$_databaseName", version: version,
-        onCreate: (db, version) {
-      db.execute(
-        'CREATE TABLE $tableName ($tableId INTEGET PRIMARY KEY, $tableMovie TEXT)',
-      );
-    });
+    _db ??= await openDatabase(
+      "$path/$_databaseName",
+      version: version,
+      onCreate: (db, version) {
+        db.execute(
+          'CREATE TABLE $tableName ($tableId INTEGET PRIMARY KEY, $tableMovie TEXT)',
+        );
+      },
+    );
     return _db!;
   }
 

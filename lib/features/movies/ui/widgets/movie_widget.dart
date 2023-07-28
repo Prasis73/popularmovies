@@ -2,15 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../common/cubit/common_state.dart';
-import '../../cubit/favourite_movie_cubit.dart';
-import '../../cubit/fetch_movie_list_bloc.dart';
-import '../../cubit/movie_event.dart';
-import '../../models/movie_model.dart';
-import '../../resources/movie_repository.dart';
-import '../pages/favourite_screen.dart';
-import 'movie_card.dart';
+import 'package:popular_movie/common/cubit/common_state.dart';
+import 'package:popular_movie/features/movies/cubit/favourite_movie_cubit.dart';
+import 'package:popular_movie/features/movies/cubit/fetch_movie_list_bloc.dart';
+import 'package:popular_movie/features/movies/cubit/movie_event.dart';
+import 'package:popular_movie/features/movies/models/movie_model.dart';
+import 'package:popular_movie/features/movies/resources/movie_repository.dart';
+import 'package:popular_movie/features/movies/ui/pages/favourite_screen.dart';
+import 'package:popular_movie/features/movies/ui/widgets/movie_card.dart';
 
 class MovieWidget extends StatefulWidget {
   const MovieWidget({super.key});
@@ -22,6 +21,7 @@ class MovieWidget extends StatefulWidget {
 class _MovieWidgetState extends State<MovieWidget> {
   final ScrollController _controller = ScrollController();
   final TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     context.read<FetchMovieListBloc>().add(FetchMovieEvent());

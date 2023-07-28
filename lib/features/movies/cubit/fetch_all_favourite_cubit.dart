@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:popular_movie/common/cubit/common_state.dart';
 
-import '../../common/cubit/common_state.dart';
 import '../resources/movie_repository.dart';
 
 class FetchAllFavoriteCubit extends Cubit<CommonState> {
