@@ -24,7 +24,7 @@
 
 ## About The Project
 
-This is a Popular movie catalogue application which build by flutter,and uses the Movie Database API from themoviedb.org.
+This is a Popular movie catalogue application which is build in flutter,and uses the Movie Database API from themoviedb.org.
 The project uses common layouts widget, such as Container, Stack, Column, Row, GridView, etc. Sqflite is used as local database to store favorites for fast data fetching and pagination feature is implemented to load movies list. BLoC is used for state management and a separate file is created for defining error classes and handling error messages.
 
 ## App Features:
@@ -37,13 +37,13 @@ The project uses common layouts widget, such as Container, Stack, Column, Row, G
 
 ## Packages used:
 
-bloc: <br>
-flutter_bloc: <br>
-bloc_concurrency: <br>
-dartz: <br>
-sqflite: <br>
-dio: <br>
-google_fonts: <br>
+- bloc: <br>
+- flutter_bloc: <br>
+- bloc_concurrency: <br>
+- dartz: <br>
+- sqflite: <br>
+- dio: <br>
+- google_fonts: <br>
 
 ### Built With
 
@@ -75,10 +75,10 @@ flutter run
 
 ## Screenshots
 
-<img src="https://prasisrijal.com.np/moviesc/1.png" height=250px width=150px><br> Home Page<br>
-<img src="https://prasisrijal.com.np/moviesc/2.png" height=250px width=150px><br> Favourite <br>
-<img src="https://prasisrijal.com.np/moviesc/3.png" height=250px width=150px><br> Search Movie<br>
-<img src="https://prasisrijal.com.np/moviesc/4.png" height=250px width=150px><br> Movie details<br>
+<img src="https://prasisrijal.com.np/moviesc/1.png" height=280px width=150px><br> Home Page Screen<br>
+<img src="https://prasisrijal.com.np/moviesc/2.png" height=280px width=150px><br> Favourite Screen <br>
+<img src="https://prasisrijal.com.np/moviesc/3.png" height=280px width=150px><br> Search Movie Screen<br>
+<img src="https://prasisrijal.com.np/moviesc/4.png" height=280px width=150px><br> Movie details Screen<br>
 
 <!-- CONTACT -->
 
